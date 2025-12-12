@@ -41,4 +41,4 @@ jobs:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
-          python -m informatica_to_databricks.deploy --src generated --target "/Users/${{ github.actor }}/generated"
+          python -m informatica_to_databricks.deploy --src generated --target "/Users/jeetendra.singh.0323@gmail.com/generated"
