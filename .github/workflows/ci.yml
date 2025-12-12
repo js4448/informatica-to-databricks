@@ -22,7 +22,7 @@ jobs:
 
   deploy:
     needs: test
-    if: github.ref == 'refs/heads/main' && secrets.DATABRICKS_TOKEN != '' && secrets.DATABRICKS_HOST != ''
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -36,9 +36,13 @@ jobs:
       - name: Generate notebooks
         run: |
           python -m informatica_to_databricks.cli generate --input tests/samples/sample_mapping.xml --out generated
-      - name: Upload to Databricks
+      - name: Upload to Databricks (if secrets present)
         env:
           DATABRICKS_HOST: ${{ secrets.DATABRICKS_HOST }}
           DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
         run: |
+          if [ -z "$DATABRICKS_HOST" ] || [ -z "$DATABRICKS_TOKEN" ]; then
+            echo "DATABRICKS_HOST or DATABRICKS_TOKEN not set. Skipping deploy."
+            exit 0
+          fi
           python -m informatica_to_databricks.deploy --src generated --target "/Users/jeetendra.singh.0323@gmail.com/generated"
