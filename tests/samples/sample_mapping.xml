@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<REPOSITORY>
+  <FOLDER>
+    <MAPPING NAME="sample_mapping">
+      <TRANSFORMATION NAME="src" TYPE="Source">
+        <TRANSFORMFIELD NAME="id" DATATYPE="integer"/>
+        <TRANSFORMFIELD NAME="name" DATATYPE="string"/>
+      </TRANSFORMATION>
+      <TRANSFORMATION NAME="expr" TYPE="Expression">
+        <TRANSFORMFIELD NAME="id" DATATYPE="integer"/>
+        <TRANSFORMFIELD NAME="name" DATATYPE="string"/>
+      </TRANSFORMATION>
+      <TRANSFORMATION NAME="tgt" TYPE="Target">
+        <TRANSFORMFIELD NAME="id" DATATYPE="integer"/>
+        <TRANSFORMFIELD NAME="name" DATATYPE="string"/>
+      </TRANSFORMATION>
+    </MAPPING>
+  </FOLDER>
+</REPOSITORY>

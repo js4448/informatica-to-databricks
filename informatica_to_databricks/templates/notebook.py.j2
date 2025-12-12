@@ -1,0 +1,21 @@
+"""Auto-generated PySpark file for mapping {{ mapping.name }}"""
+from pyspark.sql import SparkSession
+
+def main(spark: SparkSession = None):
+    spark = spark or SparkSession.builder.getOrCreate()
+
+    # NOTE: This is a generated scaffold. Review and implement complex logic.
+    {% for t in mapping.transformations %}
+    # Transformation: {{ t.name }} (type={{ t.type }})
+    {% if t.type and t.type.lower() == 'source' %}
+    df_{{ loop.index }} = spark.read.format('parquet').load('replace_with_source_path')
+    {% elif t.type and t.type.lower() == 'target' %}
+    # write target - replace df variable appropriately
+    # df_to_write.write.mode('overwrite').parquet('replace_with_target_path')
+    {% else %}
+    # TODO: Implement transformation '{{ t.name }}'
+    {% endif %}
+    {% endfor %}
+
+if __name__ == '__main__':
+    main()
